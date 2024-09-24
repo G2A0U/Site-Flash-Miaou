@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Sandbox</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Conteneur pour la vidéo -->
+    <div class="video-container">
+      <!-- La vidéo locale -->
+      <video class="video" width="560" height="315" autoplay muted loop>
+        <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la balise vidéo.
+      </video>
+
+      <!-- Un div transparent superposé pour capter les mouvements de la souris -->
+      <div class="overlay"></div>
+    </div>
+
+    <div class="light"></div>
+    <div id="app"></div>
+
+    <script src="./index.mjs" type="module"></script>
+  </body>
+</html>
