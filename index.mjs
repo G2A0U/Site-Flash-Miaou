@@ -1,11 +1,28 @@
-const light = document.querySelector(".light");
-const overlay = document.querySelector(".overlay");
+// Sélectionne les éléments importants
+const video = document.getElementById('myVideo');
+const unmuteNotice = document.getElementById('unmuteNotice');
+const light = document.querySelector('.light');
+const overlay = document.querySelector('.overlay');
 
-window.addEventListener("mousemove", (e) => {
-  light.style.setProperty("--x", e.clientX + "px");
-  light.style.setProperty("--y", e.clientY + "px");
+// Fonction pour démarrer la vidéo et activer le son après un clic
+const startVideoWithSound = () => {
+  video.play(); // Démarre la vidéo
+  video.muted = false; // Active le son
+  unmuteNotice.style.display = 'none'; // Cache le message
+  document.removeEventListener('click', startVideoWithSound); // Supprime l'écouteur d'événement après le clic
+};
 
-  // Met à jour la position du cercle lumineux sur l'overlay
-  overlay.style.setProperty("--x", e.clientX + "px");
-  overlay.style.setProperty("--y", e.clientY + "px");
+// Ajoute un écouteur d'événement pour démarrer la vidéo lors d'un clic sur le document
+document.addEventListener('click', startVideoWithSound);
+
+// Gestion de l'effet de lumière qui suit la souris
+document.body.addEventListener('mousemove', (event) => {
+  const x = event.clientX;
+  const y = event.clientY;
+
+  // Met à jour les variables CSS pour l'effet de lumière
+  light.style.setProperty('--x', `${x}px`);
+  light.style.setProperty('--y', `${y}px`);
+  overlay.style.setProperty('--x', `${x}px`);
+  overlay.style.setProperty('--y', `${y}px`);
 });
