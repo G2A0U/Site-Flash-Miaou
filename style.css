@@ -13,17 +13,18 @@ body {
   background: #000;
   color: #fff;
   position: relative;
+  overflow: hidden; /* Empêcher tout débordement visuel */
 }
 
 .video-container {
   position: relative;
-  width: 40vw;
+  width: 40vw; /* Largeur de la vidéo */
   height: auto;
 }
 
 .video {
   width: 100%;
-  height: auto;
+  height: auto; /* Proportions respectées */
   z-index: 1;
   position: relative;
 }
@@ -34,11 +35,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.95);
-  clip-path: circle(0% at 50% 50%);
-  pointer-events: none;
-  transition: clip-path 0.2s ease-out;
+  z-index: 2; /* Au-dessus de la vidéo */
+  background: rgba(0, 0, 0, 0.95); /* Couche sombre */
+  clip-path: circle(0% at 50% 50%); /* Cachée au départ */
+  pointer-events: none; /* Permet de cliquer sur la vidéo */
+  transition: clip-path 0.3s ease-out; /* Ajustement de la transition */
 }
 
 .light {
@@ -48,12 +49,17 @@ body {
   width: 100%;
   height: 100vh;
   pointer-events: none;
-  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), transparent 5%, rgba(0, 0, 0, 0.95) 8%);
-  z-index: 3;
+  /* Ajustement pour éviter les effets indésirables */
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    transparent 5%,
+    rgba(0, 0, 0, 0.95) 15%
+  );
+  z-index: 3; /* Assure que la lumière est au-dessus de tout */
 }
 
 body:hover .overlay {
-  /* Ajustement pour éviter le cercle noir lors des bords */
-  clip-path: circle(calc(12% + 5vw) at var(--x, 50%) var(--y, 50%));
-  transition: clip-path 0.2s ease-out;
+  /* Ajustement du clip-path pour un effet de flash lisse */
+  clip-path: circle(10% at var(--x) var(--y));
+  transition: clip-path 0.3s ease-out; /* Assure une transition plus fluide */
 }
