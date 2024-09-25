@@ -52,7 +52,7 @@ body {
 
   /* Radial gradient pour l'effet de lumière */
   background: radial-gradient(
-    circle at var(--x, 50%) var(--y, 50%),
+    circle at var(--x, 25%) var(--y, 25%),
     rgba(255, 255, 255, 0.5) 0%,  /* Centre lumineux visible */
     rgba(255, 255, 255, 0.3) 20%, /* Transition lumineuse plus douce */
     rgba(0, 0, 0, 0.8) 60%        /* Ombre subtile */
@@ -61,6 +61,6 @@ body {
 }
 
 body:hover .overlay {
-  clip-path: circle(6% at var(--x) var(--y)); 
+  clip-path: circle(2% at var(--x) var(--y)); 
   transition: clip-path 0.3s ease-out;
 }
