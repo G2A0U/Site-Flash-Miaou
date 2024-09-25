@@ -51,25 +51,14 @@ body {
   width: 100%;
   height: 100vh;
   pointer-events: none;
-
-  /* Modifier le gradient pour supprimer le cercle noir */
-  background: radial-gradient(
-    circle at var(--x, 50%) var(--y, 50%),
-    rgba(0, 0, 0, 0.1) 5%, /* Faible opacité pour éviter l'ombre noire */
-    rgba(0, 0, 0, 0.9) 20%
-  );
+  /* Retirer le radial-gradient qui peut causer le cercle noir */
+  background: none; 
   z-index: 3;
 }
 
 body:hover .overlay {
-  /* Ajuster la taille du cercle pour éviter un effet d'ombre */
-  clip-path: circle(12% at var(--x, 50%) var(--y, 50%));
+  /* Ajuster le clip-path pour révéler la vidéo sans cercle noir */
+  clip-path: circle(12% at var(--x) var(--y));
   transition: clip-path 0.3s ease-out;
 }
 
-
-body:hover .overlay {
-  /* Ajustement du clip-path pour un effet de flash lisse */
-  clip-path: circle(10% at var(--x) var(--y));
-  transition: clip-path 0.3s ease-out; /* Assure une transition plus fluide */
-}
