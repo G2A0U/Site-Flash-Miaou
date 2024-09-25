@@ -1,3 +1,4 @@
+/* CSS existant */
 * {
   margin: 0;
   padding: 0;
@@ -48,28 +49,21 @@ body {
   width: 100%;
   height: 100vh;
   pointer-events: none;
-  /* Le filtre de lumière qui révèle la vidéo */
-  background: radial-gradient(
-    circle at var(--x) var(--y),
-    transparent 4%,
-    rgba(0, 0, 0, 0.95) 7%
-  );
   z-index: 3; /* Au-dessus de tout */
+  
+  /* Mise à jour du gradient pour éviter les "ombres" au bord */
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    transparent 3%,
+    rgba(0, 0, 0, 0.95) 6%
+  );
 }
 
 body:hover .overlay {
   clip-path: circle(
-    10% at var(--x) var(--y)
+    10% at var(--x, 50%) var(--y, 50%)
   ); /* Révèle la vidéo dans un cercle qui suit la souris */
   transition: clip-path 0s; /* Assure un mouvement fluide de la lumière */
 }
 
-#unmuteNotice {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  color: white;
-  background-color: black;
-  padding: 10px;
-  z-index: 4; /* S'assurer que le message est visible au-dessus */
-}
+
