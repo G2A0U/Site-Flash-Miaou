@@ -39,7 +39,12 @@ body {
   background: rgba(0, 0, 0, 0.95); /* Couche sombre */
   clip-path: circle(0% at 50% 50%); /* Cachée au départ */
   pointer-events: none; /* Permet de cliquer sur la vidéo */
-  transition: clip-path 0s ease;
+  transition: clip-path 0.2s ease-out; /* Ajustement de la transition pour la fluidité */
+}
+
+body:hover .overlay {
+  clip-path: circle(10% at var(--x, 50%) var(--y, 50%)); /* Ajustement de la lumière */
+  transition: clip-path 0.2s ease-out; /* Transition plus douce */
 }
 
 .light {
