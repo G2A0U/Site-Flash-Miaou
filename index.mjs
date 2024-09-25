@@ -20,9 +20,16 @@ document.body.addEventListener('mousemove', (event) => {
   const x = event.clientX;
   const y = event.clientY;
 
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  // Empêche la lumière de sortir des bords de l'écran
+  const adjustedX = Math.min(Math.max(x, 0), viewportWidth);
+  const adjustedY = Math.min(Math.max(y, 0), viewportHeight);
+
   // Met à jour les variables CSS pour l'effet de lumière
-  light.style.setProperty('--x', `${x}px`);
-  light.style.setProperty('--y', `${y}px`);
-  overlay.style.setProperty('--x', `${x}px`);
-  overlay.style.setProperty('--y', `${y}px`);
+  light.style.setProperty('--x', `${adjustedX}px`);
+  light.style.setProperty('--y', `${adjustedY}px`);
+  overlay.style.setProperty('--x', `${adjustedX}px`);
+  overlay.style.setProperty('--y', `${adjustedY}px`);
 });
