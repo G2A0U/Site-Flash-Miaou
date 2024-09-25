@@ -29,6 +29,7 @@ body {
   position: relative;
 }
 
+
 .overlay {
   position: absolute;
   top: 0;
@@ -39,8 +40,9 @@ body {
   background: rgba(0, 0, 0, 0.95); /* Couche sombre */
   clip-path: circle(0% at 50% 50%); /* Cachée au départ */
   pointer-events: none; /* Permet de cliquer sur la vidéo */
-  transition: clip-path 0.3s ease-out; /* Ajustement de la transition */
 }
+
+
 
 .light {
   position: fixed;
@@ -49,14 +51,22 @@ body {
   width: 100%;
   height: 100vh;
   pointer-events: none;
-  /* Ajustement pour éviter les effets indésirables */
+
+  /* Modifier le gradient pour supprimer le cercle noir */
   background: radial-gradient(
     circle at var(--x, 50%) var(--y, 50%),
-    transparent 5%,
-    rgba(0, 0, 0, 0.95) 15%
+    rgba(0, 0, 0, 0.1) 5%, /* Faible opacité pour éviter l'ombre noire */
+    rgba(0, 0, 0, 0.9) 20%
   );
-  z-index: 3; /* Assure que la lumière est au-dessus de tout */
+  z-index: 3;
 }
+
+body:hover .overlay {
+  /* Ajuster la taille du cercle pour éviter un effet d'ombre */
+  clip-path: circle(12% at var(--x, 50%) var(--y, 50%));
+  transition: clip-path 0.3s ease-out;
+}
+
 
 body:hover .overlay {
   /* Ajustement du clip-path pour un effet de flash lisse */
