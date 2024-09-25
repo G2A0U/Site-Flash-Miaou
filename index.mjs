@@ -33,3 +33,14 @@ document.body.addEventListener('mousemove', (event) => {
   overlay.style.setProperty('--x', `${adjustedX}px`);
   overlay.style.setProperty('--y', `${adjustedY}px`);
 });
+
+// Si la souris ne bouge pas, initialiser les valeurs au centre de la page pour éviter un cercle visible
+document.addEventListener('DOMContentLoaded', () => {
+  const initialX = window.innerWidth / 2;
+  const initialY = window.innerHeight / 2;
+
+  light.style.setProperty('--x', `${initialX}px`);
+  light.style.setProperty('--y', `${initialY}px`);
+  overlay.style.setProperty('--x', `${initialX}px`);
+  overlay.style.setProperty('--y', `${initialY}px`);
+});
