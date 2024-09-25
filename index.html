@@ -11,12 +11,19 @@
     <!-- Conteneur pour la vidéo -->
     <div class="video-container">
       <!-- La vidéo locale -->
-<video class="video" width="560" height="315" id="myVideo" loop>
+<video class="video" width="560" height="315" id="myVideo" autoplay loop muted>
   <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
   Votre navigateur ne supporte pas la balise vidéo.
 </video>
 
-<button onclick="document.getElementById('myVideo').play();">Lire la vidéo</button>
+<script>
+  const video = document.getElementById('myVideo');
+  
+  // Dès que l'utilisateur bouge la souris ou interagit avec la page
+  window.addEventListener('mousemove', () => {
+    video.muted = false; // Activer le son
+  }, { once: true }); // Exécuter une seule fois lors de la première interaction
+</script>
 
 
       <!-- Un div transparent superposé pour capter les mouvements de la souris -->
