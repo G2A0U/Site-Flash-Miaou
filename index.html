@@ -11,10 +11,13 @@
     <!-- Conteneur pour la vidéo -->
     <div class="video-container">
       <!-- La vidéo locale -->
-<video class="video" width="560" height="315" autoplay loop>
+<video class="video" width="560" height="315" id="myVideo" loop>
   <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
   Votre navigateur ne supporte pas la balise vidéo.
 </video>
+
+<button onclick="document.getElementById('myVideo').play();">Lire la vidéo</button>
+
 
       <!-- Un div transparent superposé pour capter les mouvements de la souris -->
       <div class="overlay"></div>
