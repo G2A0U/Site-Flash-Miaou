@@ -27,20 +27,21 @@ document.body.addEventListener('mousemove', (event) => {
   const adjustedX = Math.min(Math.max(x, 0), viewportWidth);
   const adjustedY = Math.min(Math.max(y, 0), viewportHeight);
 
+  // Ajuste les coordonnées pour éviter le cercle noir
+  const distanceToRightEdge = viewportWidth - adjustedX;
+  const distanceToBottomEdge = viewportHeight - adjustedY;
+
+  const minDistance = Math.min(adjustedX, distanceToRightEdge, adjustedY, distanceToBottomEdge);
+
+  // Si la souris est proche des bords, réduire la taille du cercle
+  const circleSize = Math.max(minDistance / 3, 50);
+
   // Met à jour les variables CSS pour l'effet de lumière
   light.style.setProperty('--x', `${adjustedX}px`);
   light.style.setProperty('--y', `${adjustedY}px`);
   overlay.style.setProperty('--x', `${adjustedX}px`);
   overlay.style.setProperty('--y', `${adjustedY}px`);
-});
 
-// Si la souris ne bouge pas, initialiser les valeurs au centre de la page pour éviter un cercle visible
-document.addEventListener('DOMContentLoaded', () => {
-  const initialX = window.innerWidth / 2;
-  const initialY = window.innerHeight / 2;
-
-  light.style.setProperty('--x', `${initialX}px`);
-  light.style.setProperty('--y', `${initialY}px`);
-  overlay.style.setProperty('--x', `${initialX}px`);
-  overlay.style.setProperty('--y', `${initialY}px`);
+  // Ajuste la taille du cercle en fonction de la proximité des bords
+  overlay.style.clipPath = `circle(${circleSize}px at ${adjustedX}px ${adjustedY}px)`;
 });
