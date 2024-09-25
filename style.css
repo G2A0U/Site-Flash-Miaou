@@ -13,7 +13,7 @@ body {
   background: #000;
   color: #fff;
   position: relative;
-  overflow: hidden; /* Empêcher tout débordement visuel */
+  overflow: hidden;
 }
 
 .video-container {
@@ -24,11 +24,10 @@ body {
 
 .video {
   width: 100%;
-  height: auto; /* Proportions respectées */
+  height: auto;
   z-index: 1;
   position: relative;
 }
-
 
 .overlay {
   position: absolute;
@@ -36,13 +35,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2; /* Au-dessus de la vidéo */
-  background: rgba(0, 0, 0, 0.95); /* Couche sombre */
-  clip-path: circle(0% at 50% 50%); /* Cachée au départ */
-  pointer-events: none; /* Permet de cliquer sur la vidéo */
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.95); /* Superposition sombre pour cacher la vidéo */
+  clip-path: circle(0% at 50% 50%); /* Vidéo complètement cachée au départ */
+  pointer-events: none;
+  transition: clip-path 0.3s ease-out;
 }
-
-
 
 .light {
   position: fixed;
@@ -52,18 +50,17 @@ body {
   height: 100vh;
   pointer-events: none;
 
+  /* Radial gradient pour l'effet de lumière */
   background: radial-gradient(
     circle at var(--x, 50%) var(--y, 50%),
-    rgba(255, 255, 255, 0.2) 0%,  /* Centre lumineux mais peu intense */
-    rgba(255, 255, 255, 0.1) 20%, /* Transition douce vers un léger éclaircissement */
-    rgba(0, 0, 0, 0.8) 60%         /* Finit en ombre subtile */
+    rgba(255, 255, 255, 0.5) 0%,  /* Centre lumineux visible */
+    rgba(255, 255, 255, 0.3) 20%, /* Transition lumineuse plus douce */
+    rgba(0, 0, 0, 0.8) 60%        /* Ombre subtile */
   );
   z-index: 3;
 }
 
 body:hover .overlay {
-  /* Ajuster le clip-path pour révéler la vidéo sans cercle noir */
-  clip-path: circle(7% at var(--x) var(--y));
+  clip-path: circle(12% at var(--x) var(--y)); /* Révélation de la vidéo autour de la souris */
   transition: clip-path 0.3s ease-out;
 }
-
