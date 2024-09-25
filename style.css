@@ -58,4 +58,10 @@ body {
     rgba(0, 0, 0, 0.8) 5%        /* Ombre subtile */
   );
 }
+  z-index: 10;
+}
 
+body:hover .overlay {
+  clip-path: circle(1% at var(--x) var(--y)); /* Révélation de la vidéo autour de la souris */
+  transition: clip-path 0.3s ease-out;
+}
