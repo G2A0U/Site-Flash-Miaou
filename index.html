@@ -6,39 +6,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Sandbox</title>
     <link rel="stylesheet" href="./style.css" />
+    <style>
+      /* Ton CSS existant avec les effets de flash */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+        color: #fff;
+        position: relative;
+      }
+      
+      .video-container {
+        position: relative;
+        width: 40vw; /* Largeur de la vidéo */
+        height: auto;
+      }
+      
+      .video {
+        width: 100%;
+        height: auto; /* Proportions respectées */
+        z-index: 1;
+        position: relative;
+      }
+      
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2; /* Au-dessus de la vidéo */
+        background: rgba(0, 0, 0, 0.95); /* Couche sombre */
+        clip-path: circle(0% at 50% 50%); /* Cachée au départ */
+        pointer-events: none; /* Permet de cliquer sur la vidéo */
+        transition: clip-path 0s ease;
+      }
+      
+      .light {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        pointer-events: none;
+        /* Le filtre de lumière qui révèle la vidéo */
+        background: radial-gradient(
+          circle at var(--x) var(--y),
+          transparent 4%,
+          rgba(0, 0, 0, 0.95) 7%
+        );
+        z-index: 3; /* Au-dessus de tout */
+      }
+      
+      body:hover .overlay {
+        clip-path: circle(
+          10% at var(--x) var(--y)
+        ); /* Révèle la vidéo dans un cercle qui suit la souris */
+        transition: clip-path 0s; /* Assure un mouvement fluide de la lumière */
+      }
+
+      #unmuteNotice {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+        background-color: black;
+        padding: 10px;
+        z-index: 4;
+      }
+    </style>
   </head>
   <body>
     <!-- Conteneur pour la vidéo -->
     <div class="video-container">
-      <!-- La vidéo locale -->
       <video class="video" id="myVideo" width="560" height="315" loop>
         <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
         Votre navigateur ne supporte pas la balise vidéo.
       </video>
+      <!-- Superposition pour l'effet de flash -->
+      <div class="overlay"></div>
     </div>
 
     <div class="light"></div>
     <div id="app"></div>
 
     <!-- Message pour activer le son -->
-    <div id="unmuteNotice" style="position: fixed; bottom: 20px; left: 20px; color: white; background-color: black; padding: 10px;">
-      Cliquez n'importe où pour démarrer la vidéo avec le son
-    </div>
+    <div id="unmuteNotice">Cliquez n'importe où pour démarrer la vidéo avec le son</div>
 
     <script>
       const video = document.getElementById('myVideo');
       const unmuteNotice = document.getElementById('unmuteNotice');
 
-      // Fonction pour démarrer la vidéo et activer le son
+      // Fonction pour démarrer la vidéo avec du son après interaction
       const startVideoWithSound = () => {
-        video.play(); // Lance la vidéo
+        video.play(); // Démarre la vidéo
         video.muted = false; // Assure que le son est activé
-        unmuteNotice.style.display = 'none'; // Cache le message de démarrage
-        document.removeEventListener('click', startVideoWithSound); // Supprime l'écouteur de clic
+        unmuteNotice.style.display = 'none'; // Cache le message
+        document.removeEventListener('click', startVideoWithSound); // Retire l'écouteur de clic après activation
       };
 
-      // Ajoute un écouteur pour démarrer la vidéo lors d'un clic n'importe où sur la page
+      // Activer la vidéo après un clic
       document.addEventListener('click', startVideoWithSound);
+
+      // Effet de lumière qui suit la souris
+      const light = document.querySelector('.light');
+      const overlay = document.querySelector('.overlay');
+
+      // Mise à jour des coordonnées pour suivre la souris
+      document.body.addEventListener('mousemove', (event) => {
+        const x = event.clientX;
+        const y = event.clientY;
+
+        // Mise à jour des variables CSS pour la lumière et la superposition
+        light.style.setProperty('--x', `${x}px`);
+        light.style.setProperty('--y', `${y}px`);
+        overlay.style.setProperty('--x', `${x}px`);
+        overlay.style.setProperty('--y', `${y}px`);
+      });
     </script>
   </body>
 </html>
