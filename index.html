@@ -11,28 +11,34 @@
     <!-- Conteneur pour la vidéo -->
     <div class="video-container">
       <!-- La vidéo locale -->
-<video class="video" width="560" height="315" id="myVideo" autoplay loop muted>
-  <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
-  Votre navigateur ne supporte pas la balise vidéo.
-</video>
-
-<script>
-  const video = document.getElementById('myVideo');
-  
-  // Dès que l'utilisateur bouge la souris ou interagit avec la page
-  window.addEventListener('mousemove', () => {
-    video.muted = false; // Activer le son
-  }, { once: true }); // Exécuter une seule fois lors de la première interaction
-</script>
-
-
-      <!-- Un div transparent superposé pour capter les mouvements de la souris -->
-      <div class="overlay"></div>
+      <video class="video" id="myVideo" width="560" height="315" loop>
+        <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la balise vidéo.
+      </video>
     </div>
 
     <div class="light"></div>
     <div id="app"></div>
 
-    <script src="./index.mjs" type="module"></script>
+    <!-- Message pour activer le son -->
+    <div id="unmuteNotice" style="position: fixed; bottom: 20px; left: 20px; color: white; background-color: black; padding: 10px;">
+      Cliquez n'importe où pour démarrer la vidéo avec le son
+    </div>
+
+    <script>
+      const video = document.getElementById('myVideo');
+      const unmuteNotice = document.getElementById('unmuteNotice');
+
+      // Fonction pour démarrer la vidéo et activer le son
+      const startVideoWithSound = () => {
+        video.play(); // Lance la vidéo
+        video.muted = false; // Assure que le son est activé
+        unmuteNotice.style.display = 'none'; // Cache le message de démarrage
+        document.removeEventListener('click', startVideoWithSound); // Supprime l'écouteur de clic
+      };
+
+      // Ajoute un écouteur pour démarrer la vidéo lors d'un clic n'importe où sur la page
+      document.addEventListener('click', startVideoWithSound);
+    </script>
   </body>
 </html>
