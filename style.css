@@ -14,56 +14,31 @@ body {
   color: #fff;
   position: relative;
   overflow: hidden;
-  opacity: 1
 }
 
 .video-container {
   position: relative;
   width: 40vw; /* Largeur de la vidéo */
   height: auto;
-  opacity: 1
 }
 
 .video {
   width: 100%;
   height: auto;
-  z-index: 1;
   position: relative;
-  opacity: 1
+  z-index: 1;
 }
 
-
-.overlay {
+/* Masque de la vidéo */
+.video-mask {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  background: rgba(0, 0, 0, 1); 
-  opacity: 1;
-  pointer-events: none;
-  clip-path: circle(0% at var(--x, 50%) var(--y, 50%)); /* Small circle around mouse */
-  transition: clip-path 0.3s ease-out;
-}
-
-
-.light {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  pointer-events: none;
-
-  /* Radial gradient pour l'effet de lumière */
-  background: radial-gradient(
-    circle at var(--x, 15%) var(--y, 15%),
-    rgba(255, 255, 255, 0.5) 0%,  /* Centre lumineux visible */
-    rgba(255, 255, 255, 0.3) 3%, /* Transition lumineuse plus douce */
-    rgba(0, 0, 0, 0.8) 5%        /* Ombre subtile */
-  );
+  background: rgba(0, 0, 0, 1); /* Cache noir complet */
+  pointer-events: none; /* Empêche l'interaction avec le masque */
+  clip-path: circle(0% at 0 0); /* Cache totalement la vidéo */
+  transition: clip-path 0.2s ease-out;
   z-index: 3;
 }
-
-
