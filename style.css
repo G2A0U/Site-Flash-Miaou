@@ -38,7 +38,7 @@ body {
   height: 100%;
   background: rgba(0, 0, 0, 1); /* Cache noir complet */
   pointer-events: none; /* Empêche l'interaction avec le masque */
-  clip-path: circle(0% at 0 0); /* Cache totalement la vidéo */
+  clip-path: circle(0% at 50% 50%); /* Cache totalement la vidéo */
   transition: clip-path 0.2s ease-out;
   z-index: 3;
 }
