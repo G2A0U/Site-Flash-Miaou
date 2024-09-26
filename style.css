@@ -20,6 +20,7 @@ body {
   position: relative;
   width: 40vw; /* Largeur de la vidéo */
   height: auto;
+  opacity: 1
 }
 
 .video {
@@ -42,10 +43,6 @@ body {
   pointer-events: none;
   clip-path: circle(0% at var(--x, 50%) var(--y, 50%)); /* Small circle around mouse */
   transition: clip-path 0.3s ease-out;
-}
-
-.video-container:hover .overlay {
-  clip-path: circle(10% at var(--x, 50%) var(--y, 50%)); /* Revealing part of the video */
 }
 
 
