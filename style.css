@@ -27,6 +27,7 @@ body {
   height: auto;
   z-index: 1;
   position: relative;
+  visibility: hidden;
 }
 
 
@@ -59,4 +60,8 @@ body {
     rgba(0, 0, 0, 0.8) 5%        /* Ombre subtile */
   );
   z-index: 3;
+}
+
+body:hover .video {
+  visibility: visible; /* La vidéo devient visible lorsque l'overlay est partiellement révélé */
 }
