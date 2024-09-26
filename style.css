@@ -38,8 +38,6 @@ body {
   z-index: 2;
   background: rgba(0, 0, 0, 1); /* Masque complet au départ */
   pointer-events: none;
-  clip-path: circle(0% at 50% 50%); /* Vidéo masquée au départ */
-  transition: clip-path 0.3s ease-out;
 }
 
 .light {
