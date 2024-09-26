@@ -1,4 +1,4 @@
-// Sélectionne les éléments importants
+
 const video = document.getElementById('myVideo');
 const unmuteNotice = document.getElementById('unmuteNotice');
 const light = document.querySelector('.light');
