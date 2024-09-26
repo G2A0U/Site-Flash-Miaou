@@ -65,3 +65,7 @@ body {
 body:hover .video {
   visibility: visible; /* La vidéo devient visible lorsque l'overlay est partiellement révélé */
 }
+
+body:hover .overlay {
+  clip-path: circle(10% at var(--x) var(--y)); /* Révélation partielle de la vidéo autour de la souris */
+}
