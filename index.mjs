@@ -1,26 +1,15 @@
+const videoMask = document.getElementById('videoMask');
 
-const video = document.getElementById('myVideo');
-const unmuteNotice = document.getElementById('unmuteNotice');
-const light = document.querySelector('.light');
-const overlay = document.querySelector('.overlay');
+// Met à jour la position du cercle de révélation autour de la souris
+document.querySelector('.video-container').addEventListener('mousemove', (event) => {
+  const x = event.offsetX;
+  const y = event.offsetY;
 
+  // Ajuste le clip-path pour créer un effet de cercle autour du curseur
+  videoMask.style.clipPath = `circle(10% at ${x}px ${y}px)`;
+});
 
-const startVideoWithSound = () => {
-  video.play(); // Démarre la vidéo
-  video.muted = false; // Active le son
-  unmuteNotice.style.display = 'none'; // Cache le message
-};
-
-
-document.addEventListener('click', startVideoWithSound);
-
-
-document.body.addEventListener('mousemove', (event) => {
-  const x = event.clientX;
-  const y = event.clientY;
-
-  light.style.setProperty('--x', `${x}px`);
-  light.style.setProperty('--y', `${y}px`);
-  overlay.style.setProperty('--x', `${x}px`);
-  overlay.style.setProperty('--y', `${y}px`);
+// Si la souris quitte la zone, cache de nouveau complètement la vidéo
+document.querySelector('.video-container').addEventListener('mouseleave', () => {
+  videoMask.style.clipPath = 'circle(0% at 0 0)'; // Cache la vidéo en dehors du survol
 });
