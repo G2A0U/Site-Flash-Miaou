@@ -61,7 +61,4 @@ body {
   z-index: 3;
 }
 
-body:hover .overlay {
-  clip-path: circle(5% at var(--x) var(--y)); /* Révélation de la vidéo autour de la souris */
-  transition: clip-path 0.3s ease-out;
-}
+
