@@ -26,7 +26,6 @@ document.addEventListener("touchmove", getMousePosition);
 // Fonction pour démarrer la vidéo avec le son
 const startVideoWithSound = () => {
   video.play(); // Démarre la vidéo
-  video.muted = false; // Active le son
 };
 
 // Ajouter l'événement click pour démarrer la vidéo
