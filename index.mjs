@@ -1,11 +1,10 @@
 let mouseX = 0;
 let mouseY = 0;
 let flashlight = document.getElementById("flashlight");
+const video = document.getElementById('video'); // Changez 'myVideo' par 'video'
 
-//Detect touch device
 const isTouchDevice = () => {
   try {
-    //We try to create TouchEvent(it would fail for desktops and throw error)
     document.createEvent("TouchEvent");
     return true;
   } catch (e) {
@@ -23,3 +22,12 @@ function getMousePosition(e) {
 
 document.addEventListener("mousemove", getMousePosition);
 document.addEventListener("touchmove", getMousePosition);
+
+// Fonction pour démarrer la vidéo avec le son
+const startVideoWithSound = () => {
+  video.play(); // Démarre la vidéo
+  video.muted = false; // Active le son
+};
+
+// Ajouter l'événement click pour démarrer la vidéo
+document.addEventListener('click', startVideoWithSound);
