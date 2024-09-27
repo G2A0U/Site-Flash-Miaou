@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript Sandbox</title>
-    <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="./style.css" />
+    <title>Flashlight Effect</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet-->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Conteneur pour la vidéo -->
-    <div class="video-container">
-      <!-- La vidéo locale -->
-      <video class="video" id="myVideo" width="560" height="315" loop muted>
-        <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
-      </video>
-      <!-- Superposition pour l'effet de lumière -->
-      <div class="overlay"></div>
-    </div>
-
-    <div class="light"></div>
-    <div id="app"></div>
-
-
-    <!-- Lien vers le fichier JavaScript -->
-    <script src="./index.mjs" type="module"></script>
+    <div id="flashlight"></div>
+    <!-- Balise vidéo pour la vidéo locale -->
+    <video id="video" width="100%" height="auto" autoplay loop muted>
+      <source src="miaw miaw miaw song sad (lyrics video visual).mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <!-- Script -->
+    <script src="index.mjs"></script>
   </body>
 </html>
-
