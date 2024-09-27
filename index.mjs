@@ -1,26 +1,25 @@
-const video = document.getElementById('myVideo');
-const unmuteNotice = document.getElementById('unmuteNotice');
-const light = document.querySelector('.light');
-const overlay = document.querySelector('.overlay');
+let mouseX = 0;
+let mouseY = 0;
+let flashlight = document.getElementById("flashlight");
 
-
-const startVideoWithSound = () => {
-  video.play(); // Démarre la vidéo
-  video.muted = false; // Active le son
-  unmuteNotice.style.display = 'none'; // Cache le message
+//Detect touch device
+const isTouchDevice = () => {
+  try {
+    //We try to create TouchEvent(it would fail for desktops and throw error)
+    document.createEvent("TouchEvent");
+    return true;
+  } catch (e) {
+    return false;
+  }
 };
 
+function getMousePosition(e) {
+  mouseX = !isTouchDevice() ? e.pageX : e.touches[0].pageX;
+  mouseY = !isTouchDevice() ? e.pageY : e.touches[0].pageY;
 
-document.addEventListener('click', startVideoWithSound);
+  flashlight.style.setProperty("--Xpos", mouseX + "px");
+  flashlight.style.setProperty("--Ypos", mouseY + "px");
+}
 
-
-document.body.addEventListener('mousemove', (event) => {
-  const x = event.clientX;
-  const y = event.clientY;
-
-  light.style.setProperty('--x', `${x}px`);
-  light.style.setProperty('--y', `${y}px`);
-  overlay.style.setProperty('--x', `${x}px`);
-  overlay.style.setProperty('--y', `${y}px`);
-});
-
+document.addEventListener("mousemove", getMousePosition);
+document.addEventListener("touchmove", getMousePosition);
