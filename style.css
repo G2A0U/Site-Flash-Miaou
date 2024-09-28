@@ -28,9 +28,9 @@ p {
     rgba(0, 0, 0, 1)
   );
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1600px) {
   body {
-    font-size: 24px;
+    font-size: 48px;
   }
 }
 video-container {
